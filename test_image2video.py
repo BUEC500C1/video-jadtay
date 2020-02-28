@@ -19,8 +19,5 @@ def test_getSubreddit():
 def test_getImages():
     assert getImages() == 1
     
-def test_processImages():
-    assert processImages() == 0
-    
 def test_cleanupImages():
     assert cleanupImages() == 1
