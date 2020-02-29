@@ -62,9 +62,9 @@ def processImages(txt = 'images/queue.txt'):
     print("Processing...")
     
     #process images from queue.txt into summary.mp4 video, added padding in order to stop even pixel error
-    convert = subprocess.run(['ffmpeg','-y','-f','concat','-i','{}'.format(txt),'-pix_fmt','yuvj422p','-vf','pad=ceil(iw/2)*2:ceil(ih/2)*2','summary.mp4'], capture_output = True)
-    
-    if(convert.returncode == 1):
+    try:
+        convert = subprocess.check_call(['ffmpeg','-y','-f','concat','-i','{}'.format(txt),'-pix_fmt','yuvj422p','-vf','pad=ceil(iw/2)*2:ceil(ih/2)*2','summary.mp4'], capture_output = True)
+    except subprocess.CalledProcessError:
         print("Oops something went wrong. Please try again.")
         return 0
     else:
@@ -82,7 +82,11 @@ def cleanupImages():
     return 1
 
 #function calls
-obj = getSubreddit('pics',20)
-getImages(obj,20)
-processImages('images/queue.txt')
-cleanupImages()
+def main():
+    obj = getSubreddit('pics',20)
+    getImages(obj,20)
+    processImages('images/queue.txt')
+    cleanupImages()
+
+if __name__ == "__main__":
+    main()
