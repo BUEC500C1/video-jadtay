@@ -4,6 +4,7 @@ Created on Fri Feb 28 18:06:39 2020
 
 @author: jadta
 """
+import json
 from image2video import getSubreddit
 from image2video import getImages
 from image2video import processImages
