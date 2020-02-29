@@ -18,7 +18,7 @@ def test_getSubreddit():
     assert getSubreddit('0') == obj
     
 def test_getImages():
-    assert getImages() == 1
+    assert getImages(obj) == 1
 
 def test_processImages():
     assert processImages() == 0
